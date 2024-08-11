@@ -3,6 +3,7 @@ import Header from "@/components/shared/Header";
 import type { Metadata } from "next";
 
 
+
 export const metadata: Metadata = {
   title: "Muslims Student Association (MSA)",
   description: "University of Alberta Event planning website | Allahu Akbar",

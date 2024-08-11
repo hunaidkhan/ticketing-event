@@ -1,7 +1,10 @@
 const Layout = ({ children }: {children: React.ReactNode}) => {
     return (
-        <div className="flex flex-center min-h-screen w-full bg-primary-50 bg-dotted-pattern bg-fixed bg-center ">
-            {children}
+        <div className=" w-screen animated-background h-screen bg-gradient-to-r from-emerald-200 via-lime-200 to-green-200">
+            <div className="bg-dotted-pattern flex flex-center min-h-screen">
+                {children}
+            </div>
+           
         </div>
     )
 }
