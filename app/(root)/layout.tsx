@@ -1,8 +1,6 @@
+import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/Header";
 import type { Metadata } from "next";
-
-
-import Header from "@/components/shared/header";
-import Footer from "@/components/shared/footer";
 
 
 export const metadata: Metadata = {
