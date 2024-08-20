@@ -1,4 +1,4 @@
-import EventForm from '@/components/shared/EventForm'
+import EventForm from '@/components/shared/EventForm';
 import { auth, currentUser } from '@clerk/nextjs';
 import React from 'react'
 
@@ -8,7 +8,7 @@ import React from 'react'
     
     const user = await currentUser()
     let isDisabled = false
-    if(user?.emailAddresses[0].emailAddress !== 'hunaid20042004@gmail.com') {
+    if(user?.emailAddresses[0].emailAddress !== process.env.ADMIN_USER) {
       isDisabled = true;
     }
   return (
