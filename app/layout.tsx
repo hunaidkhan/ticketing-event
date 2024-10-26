@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import {SpeedInsights} from "@vercel/speed-insights/next";
 import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 const poppins = Poppins({
@@ -28,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.variable}>
         {children}
-        <SpeedInsights />
+      
       </body>
     </html>
   </ClerkProvider>
