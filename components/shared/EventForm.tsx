@@ -37,6 +37,8 @@ const EventForm = ({userId, type, isDisabled, event, eventId}: EventFormProps) =
     console.log(event)
     const initialValues = event && type === 'Update' ? {
         ...event,
+        categoryId: event.category ? event.category._id : '',
+        imgUrl: event.imageUrl || '',
         startDateTime: new Date(event.startDateTime),
         endDateTime: new Date(event.endDateTime)
     } : eventDefaultValues
