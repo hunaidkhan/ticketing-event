@@ -104,7 +104,7 @@ const EventForm = ({userId, type, isDisabled, event, eventId}: EventFormProps) =
 
   return (
    
-    
+
     <Form {...form} >
         {isDisabled && (
             <Alert className="text-red-600 border-red-500 flex flex-col justify-center align-center text-center">
@@ -114,7 +114,6 @@ const EventForm = ({userId, type, isDisabled, event, eventId}: EventFormProps) =
                 </AlertDescription>
             </Alert>
         
-          
         )}
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
         <div className="flex flex-col gap-5 md:flex-row">
