@@ -104,7 +104,7 @@ const EventForm = ({userId, type, isDisabled, event, eventId}: EventFormProps) =
    
     <Form {...form} >
         {isDisabled && (
-            <Alert className="text-red-600 border-red-500 flex flex-col justify-center text-center">
+            <Alert className="text-red-600 border-red-500 flex flex-col justify-center align-center text-center">
                 <AlertTitle>Sorry!</AlertTitle>
                 <AlertDescription className='text-red-600'>
                     You can't create an Event since you're not an Admin
