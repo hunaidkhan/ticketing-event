@@ -104,6 +104,7 @@ const EventForm = ({userId, type, isDisabled, event, eventId}: EventFormProps) =
 
   return (
    
+    
     <Form {...form} >
         {isDisabled && (
             <Alert className="text-red-600 border-red-500 flex flex-col justify-center align-center text-center">
