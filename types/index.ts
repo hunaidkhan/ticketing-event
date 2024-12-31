@@ -28,6 +28,10 @@ export type CreateUserParams = {
       categoryId: string
       price: string
       isFree: boolean
+      tickets?: {
+        total: number; // Total tickets for the event
+        available: number; // Tickets still available
+      };
       url: string
     }
     path: string
@@ -46,6 +50,10 @@ export type CreateUserParams = {
       categoryId: string
       price: string
       isFree: boolean
+      tickets: {
+        total: number; // Total tickets for the event
+        available: number; // Tickets still available
+      };
       url: string
     }
     path: string
@@ -87,6 +95,10 @@ export type CreateUserParams = {
     startDateTime: Date
     endDateTime: Date
     url: string
+    tickets: {
+      total: number; // Total tickets for the event
+      available: number; // Tickets still available
+    };
     organizer: {
       _id: string
       firstName: string
@@ -113,11 +125,14 @@ export type CreateUserParams = {
   }
   
   export type CreateOrderParams = {
-    stripeId: string
+    paypalId: string
     eventId: string
     buyerId: string
     totalAmount: string
     createdAt: Date
+    tickets: {
+      gender: "male" | "female"; // Gender for each ticket
+    }[];
   }
   
   export type GetOrdersByEventParams = {

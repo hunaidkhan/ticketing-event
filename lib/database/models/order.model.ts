@@ -1,27 +1,22 @@
-import { Schema, model, models, Document } from 'mongoose'
+import { Schema, model, models, Document } from "mongoose";
 
 export interface IOrder extends Document {
-  createdAt: Date
-  stripeId: string
-  totalAmount: string
+  createdAt: Date;
+  paypalId: string;
+  totalAmount: string;
   event: {
-    _id: string
-    title: string
-  }
+    _id: string;
+    title: string;
+  };
   buyer: {
-    _id: string
-    firstName: string
-    lastName: string
-  }
-}
-
-export type IOrderItem = {
-  _id: string
-  totalAmount: string
-  createdAt: Date
-  eventTitle: string
-  eventId: string
-  buyer: string
+    _id: string;
+    firstName: string;
+    lastName: string;
+  };
+  tickets: {
+    gender: "male" | "female"; // Gender of the ticket holder
+    dietaryRestriction?: string; // Optional dietary restriction for the ticket
+  }[];
 }
 
 const OrderSchema = new Schema({
@@ -29,7 +24,7 @@ const OrderSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  stripeId: {
+  paypalId: {
     type: String,
     required: true,
     unique: true,
@@ -39,14 +34,20 @@ const OrderSchema = new Schema({
   },
   event: {
     type: Schema.Types.ObjectId,
-    ref: 'Event',
+    ref: "Event",
   },
   buyer: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
   },
-})
+  tickets: [
+    {
+      gender: { type: String, enum: ["male", "female"], required: true },
+      dietaryRestriction: { type: String }, // Add this field
+    },
+  ],
+});
 
-const Order = models.Order || model('Order', OrderSchema)
+const Order = models.Order || model("Order", OrderSchema);
 
-export default Order
+export default Order;

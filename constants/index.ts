@@ -24,4 +24,8 @@ export const headerLinks = [
     price: '',
     isFree: false,
     url: '',
+    tickets: {
+      total: 0, // Default to zero tickets available
+      available: 0, // Default to zero tickets available
+    },
   }

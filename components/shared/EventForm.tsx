@@ -42,6 +42,7 @@ const EventForm = ({userId, type, isDisabled, event, eventId}: EventFormProps) =
         startDateTime: new Date(event.startDateTime),
         endDateTime: new Date(event.endDateTime)
     } : eventDefaultValues
+    console.log(event?.tickets)
     const [startDate, setStartDate] = useState(new Date());
     const router = useRouter()
 
@@ -67,7 +68,13 @@ const EventForm = ({userId, type, isDisabled, event, eventId}: EventFormProps) =
         if(type === 'Create'){
             try {
                 const newEvent = await createEvent({
-                    event: {...values, imageUrl: uploadedImageUrl},
+                    event: {
+                        ...values,
+                        imageUrl: uploadedImageUrl,
+                        tickets: {total: values.tickets?.total || 0,
+                             available: values.tickets?.total || 0
+                            },
+                    },
                     userId,
                     path: '/profile'
                 })
@@ -86,9 +93,20 @@ const EventForm = ({userId, type, isDisabled, event, eventId}: EventFormProps) =
                 return;
             }
             try {
+                const soldTickets = (event?.tickets?.total ?? 0) - (event?.tickets?.available ?? 0)
+                const newTotal = values.tickets?.total || 0;
+                const newAvailableTickets = Math.max(newTotal - soldTickets, 0);
+
                 const updatedEvent = await updateEvent({
                     userId,
-                    event: {...values, imageUrl: uploadedImageUrl, _id: eventId},
+                    event: {
+                        ...values,
+                        imageUrl: uploadedImageUrl,
+                        _id: eventId,
+                        tickets: {total: values.tickets?.total || 0,
+                             available: newAvailableTickets || 0,
+                            },
+                    },
                     path: `/events/${eventId}`
                 })
 
@@ -113,7 +131,7 @@ const EventForm = ({userId, type, isDisabled, event, eventId}: EventFormProps) =
                     You can't create an Event since you're not an Admin
                 </AlertDescription>
             </Alert>
-        
+            
         )}
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
         <div className="flex flex-col gap-5 md:flex-row">
@@ -316,6 +334,30 @@ const EventForm = ({userId, type, isDisabled, event, eventId}: EventFormProps) =
             )}
             />
         </div>
+
+
+        {!form.watch("isFree") && (
+  <div className="flex flex-col gap-5 md:flex-row">
+    <FormField
+      control={form.control}
+      name="tickets.total"
+      render={({ field }) => (
+        <FormItem className="w-full">
+          <FormLabel>Total Tickets</FormLabel>
+          <FormControl>
+            <Input
+              type="number"
+              placeholder="Enter total tickets available"
+              {...field}
+              className="input-field"
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  </div>
+)}      
         <Button type="submit"
         size="lg"
         disabled={form.formState.isSubmitting || isDisabled}

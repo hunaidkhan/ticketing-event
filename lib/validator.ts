@@ -10,5 +10,16 @@ export const eventFormSchema = z.object({
     categoryId: z.string(),
     price: z.string(),
     isFree: z.boolean(),
-    url: z.string().url()
-  })
+    url: z.string().url(),
+    tickets: z
+    .object({
+      total: z.preprocess((val) => Number(val), z.number().min(1, "At least 1 ticket must be available")),
+    })
+    .optional(), // Tickets are optional for free events
+}).refine(
+  (data) => data.isFree || (data.tickets && data.tickets.total > 0),
+  {
+    message: "Tickets are required for non-free events",
+    path: ["tickets"],
+  }
+);

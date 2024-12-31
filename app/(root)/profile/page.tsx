@@ -57,7 +57,7 @@ const ProfilePage = async () => {
                     <Collection 
                     data={organizedEvents?.data}
                     emptyTitle="No events have been created"
-                    emptyStateSubtext="Maybe you don't have access to event creation. Say Alhamdulillah"
+                    emptyStateSubtext="Maybe you don't have access to event creation. Alhamdulillah"
                     collectionType="Events_Organized"
                     limit={6}
                     page={1}
