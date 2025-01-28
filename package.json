@@ -11,6 +11,9 @@
   "dependencies": {
     "@clerk/nextjs": "^4.31.4",
     "@hookform/resolvers": "^3.9.0",
+    "@paypal/checkout-server-sdk": "^1.0.3",
+    "@paypal/paypal-server-sdk": "^0.6.1",
+    "@paypal/react-paypal-js": "^8.7.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-checkbox": "^1.1.1",
     "@radix-ui/react-dialog": "^1.1.1",

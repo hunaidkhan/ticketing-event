@@ -133,6 +133,7 @@ export type CreateUserParams = {
     tickets: {
       gender: "male" | "female"; // Gender for each ticket
     }[];
+    dietaryRestriction?: string; // Optional dietary restriction for the ticket
   }
   
   export type GetOrdersByEventParams = {
