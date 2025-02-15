@@ -4,6 +4,10 @@ export interface IOrder extends Document {
   createdAt: Date;
   paypalId: string;
   totalAmount: string;
+  // New fields:
+  eventTitle: string;
+  isFree: boolean;
+  price: string;
   event: {
     _id: string;
     title: string;
@@ -14,8 +18,8 @@ export interface IOrder extends Document {
     lastName: string;
   };
   tickets: {
-    gender: "male" | "female"; // Gender of the ticket holder
-    dietaryRestriction?: string; // Optional dietary restriction for the ticket
+    gender: "male" | "female";
+    dietaryRestriction?: string;
   }[];
 }
 
@@ -32,6 +36,22 @@ const OrderSchema = new Schema({
   totalAmount: {
     type: String,
   },
+  // Add the new fields here:
+  eventTitle: {
+    type: String,
+  },
+  isFree: {
+    type: Boolean,
+  },
+  price: {
+    type: String,
+  },
+  eventId: {
+    type: String,
+  },
+  buyerId: {
+    type: String,
+  },
   event: {
     type: Schema.Types.ObjectId,
     ref: "Event",
@@ -43,7 +63,7 @@ const OrderSchema = new Schema({
   tickets: [
     {
       gender: { type: String, enum: ["male", "female"], required: true },
-      dietaryRestriction: { type: String }, // Add this field
+      dietaryRestriction: { type: String },
     },
   ],
 });

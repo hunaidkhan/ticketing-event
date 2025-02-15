@@ -125,16 +125,20 @@ export type CreateUserParams = {
   }
   
   export type CreateOrderParams = {
-    paypalId: string
-    eventId: string
-    buyerId: string
-    totalAmount: string
-    createdAt: Date
+    paypalId: string;
+    eventId: string;
+    eventTitle: string;  // new field for event title
+    price: string;       // new field for price
+    isFree: boolean;     // new field indicating if the event is free
+    buyerId: string;
+    totalAmount: string;
+    createdAt: Date;
     tickets: {
-      gender: "male" | "female"; // Gender for each ticket
+      gender: "male" | "female";
     }[];
-    dietaryRestriction?: string; // Optional dietary restriction for the ticket
+    dietaryRestriction?: string;
   }
+  
   
   export type GetOrdersByEventParams = {
     eventId: string
